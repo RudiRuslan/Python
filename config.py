@@ -1,1 +1,0 @@
-TOKEN = '5973282393:AAHwgLIrr0VdUyWXNOz27vUrZz1AeGn8rMg' # bot from token @BotFather
