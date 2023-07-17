@@ -21,6 +21,27 @@ num = int(input('Введите число от 0 до 99999)):
     else:
         print('Введено неверное число')
 #Задача 3
+from random import randint
+
+LOWER_LIMIT = 0
+UPPER_LIMIT = 1000
+MAX_ATTEMPTS = 10
+
+target_number = randint(LOWER_LIMIT, UPPER_LIMIT)
+
+for attempt in range(MAX_ATTEMPTS):
+    guess = int(input("Угадайте число: "))
+    
+    if guess == target_number:
+        print("Поздравляю, вы угадали число!")
+        break
+    elif guess < target_number:
+        print("Загаданное число больше")
+    else:
+        print("Загаданное число меньше")
+else:
+    print("К сожалению, вы не угадали число. Загаданное число было:", target_number)
+
 
   
   
