@@ -1,0 +1,26 @@
+#Задача 1
+a = int(input())
+b = int(input())
+c = int(input())
+if a < b + c and b < a + c and c < a + b:
+    if a != b and b!= c and c != a:
+        print('Разносторонний треугольник')
+    elif a == b or b== c or c == a:
+        print('Равнобедренный треугольник')
+    elif a == b == c:
+        print('Равносторонний треугольник')
+else:
+    print('Такого треугольника не существует')
+#Задача 2
+num = int(input('Введите число от 0 до 99999)):
+    if num > 0 and num < 100000:
+        if  num%1 == 0 and num%num == 0:
+            print(Простое число')
+        else:
+            print(Составное число})
+    else:
+        print('Введено неверное число')
+#Задача 3
+
+  
+  
