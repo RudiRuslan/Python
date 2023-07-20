@@ -1,0 +1,49 @@
+#Задача 1
+baza = int(input('Введите базу: '))
+num = int(input('Введите число: '))
+result = ' '
+while num  >  0:
+        result = str(num %  baza) + result
+        num = num // baza
+print(result)
+
+#Задача 2
+fraction1 = input("Введите первую дробь в формате a/b: ")
+fraction2 = input("Введите вторую дробь в формате a/b: ")
+
+# Разделяем числитель и знаменатель  дробей
+numerator1, denominator1 = map(int, fraction1.split('/'))
+numerator2, denominator2 = map(int, fraction2.split('/'))
+# Вычисляем наименьшее общее кратное знаменателей
+lcm = denominator1 * denominator2
+while denominator1 != 0:
+        denominator1, denominator2 = denominator2 % denominator1, denominator1
+lcm //= denominator2
+
+# Приводим дроби к общему знаменателю
+numerator1 *= lcm // denominator1
+numerator2 *= lcm // denominator2
+
+# Вычисляем сумму и произведение числителей
+sum_numerators = numerator1 + numerator2
+multiply_numerators = numerator1 * numerator2
+
+# Находим наибольший общий делитель числителя и знаменателя для сокращения дробей
+a, b = sum_numerators, lcm
+while b != 0:
+        a, b = b, a % b
+gcd_sum = a
+a, b = multiply_numerators, lcm
+while b != 0:
+        a, b = b, a % b
+gcd_multiply = a
+
+# Получаем окончательные результаты дробей
+sum_result = f"{sum_numerators // gcd_sum}/{lcm // gcd_sum}"
+multiply_result = f"{multiply_numerators // gcd_multiply}/{lcm // gcd_multiply}"
+
+print("Сумма дробей:", sum_result)
+print("Произведение дробей:", multiply_result)
+
+
+
