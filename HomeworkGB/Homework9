@@ -1,0 +1,103 @@
+#задание 1
+import math
+
+def solve_quadratic(a, b, c):
+    # Вычисление дискриминанта
+    D = b**2 - 4*a*c
+    
+    # Проверка значений дискриминанта
+    if D > 0:
+        x1 = (-b + math.sqrt(D)) / (2*a)
+        x2 = (-b - math.sqrt(D)) / (2*a)
+        return x1, x2
+    elif D == 0:
+        x = -b / (2*a)
+        return x,
+    else:
+        return None  # Нет действительных корней
+
+# Пример использования
+a = 1
+b = -3
+c = 2
+
+roots = solve_quadratic(a, b, c)
+if roots:
+    print("Корни уравнения:", roots)
+else:
+    print("Уравнение не имеет действительных корней")
+#задание 2
+import csv
+import random
+
+def generate_csv(filename, num_rows):
+    with open(filename, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        
+        for _ in range(num_rows):
+            row = [random.randint(1, 1000) for _ in range(3)]
+            csvwriter.writerow(row)
+#задание 3
+import csv
+
+def read_csv(filename):
+    data = []
+    with open(filename, 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            data.append([int(cell) for cell in row])
+    return data
+
+def quadratic_solver(a, b, c):
+    # Реализация функции нахождения корней квадратного уравнения
+    # (ваш код здесь)
+    pass
+
+def solve_quadratic_equations(filename):
+    data = read_csv(filename)
+    
+    @decorator
+    def solve_and_print(a, b, c):
+        roots = quadratic_solver(a, b, c)
+        print(f"Корни для {a=}, {b=}, {c=}: {roots}")
+        
+    for row in data:
+        a, b, c = row
+        solve_and_print(a, b, c)
+
+#задание 4
+import json
+
+def save_to_json(filename):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            
+            data = {
+                "args": args,
+                "kwargs": kwargs,
+                "result": result
+            }
+            
+            with open(filename, 'w') as jsonfile:
+                json.dump(data, jsonfile, indent=4)
+                
+            return result
+        return wrapper
+    return decorator
+
+# Пример использования
+@save_to_json('function_results.json')
+def multiply(a, b):
+    return a * b
+
+result = multiply(5, 3)
+print(result)  # Вывод результата функции
+
+# Данные сохранены в файле function_results.json
+
+
+
+
+
+
