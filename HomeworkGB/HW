@@ -1,0 +1,41 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+# Модель Pydantic для товаров
+class Item(BaseModel):
+    name: str
+    description: str
+    price: float
+
+# Список товаров (для примера)
+items_db = []
+
+@app.post("/items/")
+async def create_item(item: Item):
+    items_db.append(item.dict())
+    return item
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    if 0 <= item_id < len(items_db):
+        return items_db[item_id]
+    else:
+        return {"error": "Item not found"}
+
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item):
+    if 0 <= item_id < len(items_db):
+        items_db[item_id] = item.dict()
+        return item
+    else:
+        return {"error": "Item not found"}
+
+@app.delete("/items/{item_id}")
+async def delete_item(item_id: int):
+    if 0 <= item_id < len(items_db):
+        deleted_item = items_db.pop(item_id)
+        return {"result": "Item deleted", "item": deleted_item}
+    else:
+        return {"error": "Item not found"}
