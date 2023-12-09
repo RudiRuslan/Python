@@ -1,0 +1,33 @@
+from typing import List
+import statistics
+
+class ListProcessor:
+    def __init__(self, list1: List[float], list2: List[float]):
+        self.list1 = list1
+        self.list2 = list2
+
+    def calculate_average(self, input_list: List[float]) -> float:
+        if not input_list:
+            return 0
+        return statistics.mean(input_list)
+
+    def compare_averages(self) -> str:
+        average_list1 = self.calculate_average(self.list1)
+        average_list2 = self.calculate_average(self.list2)
+
+        if average_list1 > average_list2:
+            return "Первый список имеет большее среднее значение"
+        elif average_list1 < average_list2:
+            return "Второй список имеет большее среднее значение"
+        else:
+            return "Средние значения равны"
+
+# Тесты с использованием pytest
+def test_average_calculation():
+    processor = ListProcessor([1, 2, 3], [4, 5, 6])
+    assert processor.calculate_average([1, 2, 3]) == 2.0
+    assert processor.calculate_average([4, 5, 6]) == 5.0
+
+def test_comparison():
+    processor = ListProcessor([1, 2, 3], [4, 5, 6])
+    assert processor.compare_averages() == "Второй список имеет большее среднее значение"
